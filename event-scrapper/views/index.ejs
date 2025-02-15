@@ -1,0 +1,29 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sydney Events</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Events in Sydney</h1>
+  <% if (events.length === 0) { %>
+    <p class="no-events">No events available at this time.</p>
+  <% } else { %>
+    <div class="events-container">
+      <% events.forEach(function(event) { %>
+        <div class="event-card">
+          <% if (event.image) { %>
+            <img src="<%= event.image %>" alt="<%= event.name %>" class="event-image">
+          <% } %>
+          <h2><%= event.name %></h2>
+          <p class="event-date"><%= new Date(event.date).toLocaleDateString() %></p>
+          <p class="event-location"><%= event.location %></p>
+          <p class="event-description"><%= event.description %></p>
+          <a href="/ticket?eventId=<%= event.id %>" class="btn">GET TICKETS</a>
+        </div>
+      <% }); %>
+    </div>
+  <% } %>
+</body>
+</html>

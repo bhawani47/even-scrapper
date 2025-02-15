@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #f0f2f5;
+    color: #333;
+}
+
+/* Header styling */
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Events container grid */
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Event card styling */
+.event-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s;
+}
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 15px;
+}
+
+.event-date {
+    color: #666;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.event-location {
+    color: #444;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.event-description {
+    margin: 10px 0;
+    font-size: 0.95em;
+    line-height: 1.4;
+}
+
+/* Button styling */
+.btn {
+    display: inline-block;
+    background: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+.btn:hover {
+    background: #0056b3;
+}
+
+/* Ticket form styling */
+form {
+    max-width: 400px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+form label {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+form input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+form button {
+    width: 100%;
+    padding: 10px;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+form button:hover {
+    background: #218838;
+}
+
+.ticket-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.event-summary {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+/* Link styling */
+a {
+    text-decoration: none;
+    color: inherit;
+}
