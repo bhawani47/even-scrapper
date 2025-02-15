@@ -1,5 +1,5 @@
 # Event Bot Project Report
-By: [Your Name]
+By: Bhawani Singh
 Date: Feb 15, 2024
 
 ## Project Overview
