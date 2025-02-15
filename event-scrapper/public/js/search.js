@@ -2,27 +2,48 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('searchInput');
     const eventsContainer = document.querySelector('.events-container');
 
-    searchInput.addEventListener('input', debounce(async (e) => {
-        const searchTerm = e.target.value.trim();
-        
+    // Create debounced search function
+    const debouncedSearch = debounce(async (searchTerm) => {
         try {
+            console.log('searching events for:', searchTerm);
             const response = await fetch('/search', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ searchTerm })
+                body: JSON.stringify({ searchTerm: searchTerm })
             });
 
             const events = await response.json();
+            console.log('events found:', events.length);
             updateEventsDisplay(events);
         } catch (error) {
             console.error('Error searching events:', error);
         }
-    }, 300));
+    }, 300); // 300ms delay
+
+    // Add input event listener
+    searchInput.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.trim();
+        if (searchTerm.length === 0) {
+            // If search is empty, fetch all events
+            debouncedSearch('');
+            return;
+        }
+        debouncedSearch(searchTerm);
+    });
+
+    // Also allow search on Enter key press
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            searchButton.click();
+        }
+    });
 
     function updateEventsDisplay(events) {
+        console.log('updateEventsDisplay');
         if (events.length === 0) {
+            console.log('no events found');
             eventsContainer.innerHTML = `
                 <div class="no-events">
                     <i class="fas fa-search"></i>
@@ -31,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             return;
         }
+
+        eventsContainer.innerHTML = '';
 
         eventsContainer.innerHTML = events.map(event => `
             <div class="event-card">
@@ -76,3 +99,4 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
+

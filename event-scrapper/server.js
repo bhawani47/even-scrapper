@@ -13,6 +13,7 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve static assets (e.g., CSS)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.post('/events', (req, res) => {
   loadEvents();
@@ -64,10 +65,11 @@ app.post('/ticket', (req, res) => {
 });
 
 app.post('/search', (req, res) => {
+    loadEvents(); // Load events before searching
     const { searchTerm } = req.body;
     
     if (!searchTerm) {
-        return res.json(events);
+        return res.json(events); // Return all events if no search term
     }
 
     const searchResults = events.filter(event => {
@@ -75,7 +77,7 @@ app.post('/search', (req, res) => {
         return searchString.includes(searchTerm.toLowerCase());
     });
 
-    res.json(searchResults);
+    res.json(searchResults.length ? searchResults : []);
 });
 
 const PORT = process.env.PORT || 3000;
