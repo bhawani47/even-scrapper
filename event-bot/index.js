@@ -7,8 +7,15 @@ const path = require('path');
 const token = '7647155816:AAFaBKPz9sC6DOhKell6Vcdn9dUdnDQVygc'; // Enter Your TELEGRAM_BOT_TOKEN here i used my own 
 const bot = new TelegramBot(token, { polling: true });
 
+let events;
+
 // temp solution - will implement proper DB later
-const events = require('../event-scraper/events.json');
+const fetchEvents = () => {
+    fetch('https://event-scrapper.onrender.com/events').then(res => res.json()).then(data => {
+        events = data;
+    }).catch(err => {});
+}
+// const events = require('../event-scraper/events.json');
 
 // quick fix for storing user data - need to implement Redis/MongoDB
 let userPrefs = new Map();
@@ -112,4 +119,5 @@ cron.schedule('0 * * * *', () => {
 
 // temp debug logs
 console.log('Bot started - ctrl+c to exit');
+fetchEvents();
 // console.log('Debug mode:', process.env.DEBUG);
