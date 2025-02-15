@@ -16,7 +16,7 @@ const bot = new TelegramBot(token, {
 
 // Set webhook URL if in production
 if (process.env.NODE_ENV === 'production') {
-    const webhookUrl = 'https://your-render-app-url.onrender.com'; // Replace with your actual Render URL
+    const webhookUrl = 'https://event-bot-8vr9.onrender.com'; // Replace with your actual Render URL
     bot.setWebHook(`${webhookUrl}/webhook`)
         .then(() => console.log("✅ Webhook set successfully!"))
         .catch(err => console.error("❌ Error setting webhook:", err));
