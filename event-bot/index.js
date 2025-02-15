@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 
 // bot token - remember to move to env file later!
-const token = '7849192116:AAEhCbtJi-tO-TvugxwhXX_i_1p6oC3Mh10'; // Enter Your TELEGRAM_BOT_TOKEN here i used my own 
+const token = '7659582089:AAE4MfKEocY5lTHXvzN6Yi01fzf2UakNHBg'; // Enter Your TELEGRAM_BOT_TOKEN here i used my own 
 const bot = new TelegramBot(token, { polling: true });
 
 let events;
