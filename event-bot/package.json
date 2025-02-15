@@ -4,7 +4,8 @@
   "description": "Telegram bot for event recommendations and notifications",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+     "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development node index.js"
   },
   "dependencies": {
     "node-telegram-bot-api": "^0.64.0",

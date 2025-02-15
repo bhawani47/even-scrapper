@@ -7,7 +7,18 @@ const app = express();
 
 // bot token - remember to move to env file later!
 const token = '7659582089:AAE4MfKEocY5lTHXvzN6Yi01fzf2UakNHBg'; // Enter Your TELEGRAM_BOT_TOKEN here i used my own 
-const bot = new TelegramBot(token, { polling: true });
+
+// Bot configuration based on environment
+const bot = new TelegramBot(token, {
+    webHook: process.env.NODE_ENV === 'production',
+    polling: process.env.NODE_ENV !== 'production'
+});
+
+// Set webhook URL if in production
+if (process.env.NODE_ENV === 'production') {
+    const webhookUrl = 'https://your-render-app-url.onrender.com';
+    bot.setWebHook(`${webhookUrl}/webhook/${token}`);
+}
 
 let events;
 
@@ -126,6 +137,11 @@ fetchEvents();
 // console.log('Debug mode:', process.env.DEBUG);
 
 const PORT = process.env.PORT || 3000;
+
+app.post(`/webhook/${token}`, (req, res) => {
+    bot.handleUpdate(req.body);
+    res.sendStatus(200);
+});
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
