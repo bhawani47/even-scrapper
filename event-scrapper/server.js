@@ -63,6 +63,21 @@ app.post('/ticket', (req, res) => {
   res.redirect(event.url);
 });
 
+app.post('/search', (req, res) => {
+    const { searchTerm } = req.body;
+    
+    if (!searchTerm) {
+        return res.json(events);
+    }
+
+    const searchResults = events.filter(event => {
+        const searchString = `${event.name} ${event.description} ${event.location}`.toLowerCase();
+        return searchString.includes(searchTerm.toLowerCase());
+    });
+
+    res.json(searchResults);
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
