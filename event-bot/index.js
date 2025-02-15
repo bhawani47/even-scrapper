@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // bot token - remember to move to env file later!
-const token = '7647155816:AAFaBKPz9sC6DOhKell6Vcdn9dUdnDQVygc'; // Enter Your TELEGRAM_BOT_TOKEN here i used my own 
+const token = '7849192116:AAEhCbtJi-tO-TvugxwhXX_i_1p6oC3Mh10'; // Enter Your TELEGRAM_BOT_TOKEN here i used my own 
 const bot = new TelegramBot(token, { polling: true });
 
 let events;
