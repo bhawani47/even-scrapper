@@ -61,6 +61,7 @@ bot.onText(/\/start/, (msg) => {
 
 // handle user msgs
 bot.on('message', (msg) => {
+    console.log('Received:', msg.text); // debug
     if (msg.text.startsWith('/')) return; // skip commands
 
     const chatId = msg.chat.id;
