@@ -14,6 +14,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.post('/events', (req, res) => {
+  loadEvents();
+  res.send(events);
+});
+
+
 let events = [];
 
 // Helper to load events from the JSON file
