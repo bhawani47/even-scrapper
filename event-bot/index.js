@@ -13,7 +13,9 @@ let events;
 
 // temp solution - will implement proper DB later
 const fetchEvents = () => {
-    fetch('https://event-scrapper.onrender.com/events').then(res => res.json()).then(data => {
+    fetch('https://event-scrapper.onrender.com/events', {
+        method: 'POST',
+    }).then(res => res.json()).then(data => {
         events = data;
     }).catch(err => {});
 }
